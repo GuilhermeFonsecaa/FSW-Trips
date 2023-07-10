@@ -31,7 +31,7 @@ const Header = () => {
                         <AiOutlineMenu size={16} onClick={handleMenuClick} className="cursor-pointer" />
                         <Image height={31} width={31} src={data.user.image!} alt={data.user.name!} className="rounded-full shadow-md" />
                         {menuIsOpen && (
-                            < div className="absolute top-12 left-0 w-full h-full bg-white rounded-lg shadow-md flex flex-col justify-center items-center">
+                            < div className="absolute top-12 left-0 w-full h-[40px] bg-white rounded-lg shadow-lg flex flex-col justify-center items-center">
                                 <button className="text-primary text-sm font-semibold" onClick={handleLogoutClick}>Logout</button>
                             </div>
 
