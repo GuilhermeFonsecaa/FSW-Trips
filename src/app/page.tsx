@@ -1,11 +1,13 @@
 "use client"
 
-import TripSearch from "./Components/TripSearch"
+import TripSearch from "@/app/Components/TripSearch"
+import QuickSearch from "@/app/Components/QuickSearch"
 
 export default function Home() {
   return (
     <div>
-      <TripSearch/>
+      <TripSearch />
+      <QuickSearch />
     </div>
   )
 }
