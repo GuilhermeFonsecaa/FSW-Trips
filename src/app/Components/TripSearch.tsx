@@ -14,8 +14,8 @@ const TripSearch = () => {
             <div className="flex flex-col gap-4 mt-5">
                 <Input placeholder="Qual o seu destino?" />
 
-                <div className="flex gap-3">
-                    <DatePicker onChange={() => { }} />
+                <div className="flex gap-4">
+                    <DatePicker className="w-full" onChange={() => { }} />
                     <CurrencyInput />
                 </div>
 
