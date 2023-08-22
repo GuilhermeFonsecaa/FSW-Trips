@@ -11,7 +11,7 @@ const TripHeader = ({ trip }: TripHeaderProps) => {
 
     return (
         <div className="flex flex-col">
-            <div className="relative h-[300px] w-full">
+            <div className="relative h-[300px] mt-4 w-full">
                 <Image fill src={trip?.coverImage} style={{
                     objectFit: "cover"
                 }} alt={trip.name} />
