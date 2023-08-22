@@ -24,7 +24,7 @@ const TripReservation = ({ trip }: TripReservationProps) => {
                 <p className='font-medium text-sm text-primaryDarker'>R$2500</p>
             </div>
 
-            <Button className='mt-3 w-full'>Reservar Agora</Button>
+            <Button variant='primary' className='mt-3 w-full'>Reservar Agora</Button>
 
 <div className="pb-10 border-b border-b-grayLighter w-full"></div>
 
