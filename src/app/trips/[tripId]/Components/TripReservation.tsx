@@ -3,12 +3,13 @@
 import React from 'react'
 import DatePicker from '@/Components/DatePicker';
 import Input from '@/Components/Input';
-import { Trip } from '@prisma/client';
 import Button from '@/Components/Button';
 import { useForm, Controller } from 'react-hook-form';
 
 interface TripReservationProps {
-    trip: Trip
+    maxGuests: number;
+    tripStartDate: Date;
+    tripEndDate: Date;
 }
 
 interface TripReservationForm {
@@ -17,11 +18,13 @@ interface TripReservationForm {
     endDate: Date | null;
 }
 
-const TripReservation = ({ trip }: TripReservationProps) => {
-    const { register, handleSubmit, formState: { errors }, control } = useForm<TripReservationForm>();
+const TripReservation = ({ maxGuests, tripStartDate, tripEndDate }: TripReservationProps) => {
+    const { register, handleSubmit, formState: { errors }, control, watch} = useForm<TripReservationForm>();
     const onSubmit = (data: any) => {
         console.log({ data })
     };
+
+    const startDate = watch("startDate")
 
     return (
         <div className="flex flex-col px-5">
@@ -35,7 +38,7 @@ const TripReservation = ({ trip }: TripReservationProps) => {
                         },
                     }}
                     control={control}
-                    render={({ field }) => <DatePicker error={!!errors?.startDate} errorMessage={errors.startDate?.message} onChange={field.onChange} selected={field.value} className='w-full' placeholderText='Data de Ínicio' />}
+                    render={({ field }) => <DatePicker error={!!errors?.startDate} errorMessage={errors.startDate?.message} onChange={field.onChange} selected={field.value} minDate={tripStartDate} className='w-full' placeholderText='Data de Ínicio' />}
                 />
 
                 <Controller
@@ -47,7 +50,7 @@ const TripReservation = ({ trip }: TripReservationProps) => {
                         },
                     }}
                     control={control}
-                    render={({ field }) => <DatePicker error={!!errors?.endDate} errorMessage={errors.endDate?.message} onChange={field.onChange} selected={field.value} className='w-full' placeholderText='Data Final' />}
+                    render={({ field }) => <DatePicker error={!!errors?.endDate} errorMessage={errors.endDate?.message} onChange={field.onChange} selected={field.value} minDate={startDate ?? tripStartDate} maxDate={tripEndDate} className='w-full' placeholderText='Data Final' />}
                 />
             </div>
 
@@ -57,12 +60,12 @@ const TripReservation = ({ trip }: TripReservationProps) => {
                         required: {
                             value: true,
                             message: 'Número de hóspedes é obrigatório'
-                        }
+                        },
                     })}
 
                 error={!!errors?.guests}
                 errorMessage={errors?.guests?.message}
-                placeholder={`Número máximo de hóspedes (max: ${trip.maxGuests})`} className='mt-4' />
+                placeholder={`Número máximo de hóspedes (max: ${maxGuests})`} className='mt-4' />
 
             <div className="flex justify-between mt-3">
                 <p className='font-medium text-sm text-primaryDarker'>Total</p>
