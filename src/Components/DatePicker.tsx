@@ -31,6 +31,7 @@ function Input(
                 locale="pt-BR"
                 wrapperClassName="w-full"
                 className={inputClassName}
+                dateFormat='dd/MM/yyyy'
                 enableTabLoop={false}
                 placeholderText="Primeira Data"
                 {...props}

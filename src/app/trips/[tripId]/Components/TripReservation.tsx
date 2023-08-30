@@ -5,11 +5,14 @@ import DatePicker from '@/Components/DatePicker';
 import Input from '@/Components/Input';
 import Button from '@/Components/Button';
 import { useForm, Controller } from 'react-hook-form';
+import { differenceInDays } from 'date-fns/esm';
 
 interface TripReservationProps {
+    tripId: string;
     maxGuests: number;
     tripStartDate: Date;
     tripEndDate: Date;
+    pricePerDay: number;
 }
 
 interface TripReservationForm {
@@ -18,13 +21,53 @@ interface TripReservationForm {
     endDate: Date | null;
 }
 
-const TripReservation = ({ maxGuests, tripStartDate, tripEndDate }: TripReservationProps) => {
-    const { register, handleSubmit, formState: { errors }, control, watch} = useForm<TripReservationForm>();
-    const onSubmit = (data: any) => {
-        console.log({ data })
+const TripReservation = ({ tripId, maxGuests, tripStartDate, tripEndDate, pricePerDay }: TripReservationProps) => {
+    const { register, handleSubmit, formState: { errors }, control, watch, setError } = useForm<TripReservationForm>();
+
+    const onSubmit = async (data: TripReservationForm) => {
+        const response = await fetch("http://localhost:3000/api/trips/check", {
+            method: "POST",
+            body: Buffer.from(JSON.stringify({
+                startDate: data.startDate,
+                endDate: data.endDate,
+                tripId,
+            })
+            ),
+        });
+
+        const res = await response.json();
+
+        if (res?.error?.code === "TRIP_ALREADY_RESERVED") {
+            setError("startDate", {
+                type: "manual",
+                message: "Esta data já está reservada",
+            })
+
+            setError("endDate", {
+                type: "manual",
+                message: "Esta data já está reservada",
+            })
+        }
+
+        if (res?.error?.code === "INVALID_START_DATE") {
+            setError("startDate", {
+                type: "manual",
+                message: "Data Inválida",
+            })
+        }
+
+        if (res?.error?.code === "INVALID_END_DATE") {
+            setError("endDate", {
+                type: "manual",
+                message: "Data Inválida",
+            })
+        }
+
+
     };
 
     const startDate = watch("startDate")
+    const endDate = watch("endDate")
 
     return (
         <div className="flex flex-col px-5">
@@ -38,7 +81,7 @@ const TripReservation = ({ maxGuests, tripStartDate, tripEndDate }: TripReservat
                         },
                     }}
                     control={control}
-                    render={({ field }) => <DatePicker error={!!errors?.startDate} errorMessage={errors.startDate?.message} onChange={field.onChange} selected={field.value} minDate={tripStartDate} className='w-full' placeholderText='Data de Ínicio' />}
+                    render={({ field }) => <DatePicker error={!!errors?.startDate} errorMessage={errors.startDate?.message} onChange={field.onChange} selected={field.value} minDate={tripStartDate} maxDate={endDate ?? tripEndDate} className='w-full' placeholderText='Data de Ínicio' />}
                 />
 
                 <Controller
@@ -69,7 +112,7 @@ const TripReservation = ({ maxGuests, tripStartDate, tripEndDate }: TripReservat
 
             <div className="flex justify-between mt-3">
                 <p className='font-medium text-sm text-primaryDarker'>Total</p>
-                <p className='font-medium text-sm text-primaryDarker'>R$2500</p>
+                <p className='font-medium text-sm text-primaryDarker'>{startDate && endDate ? `R$${differenceInDays(endDate, startDate) * pricePerDay}` : "R$0"}</p>
             </div>
 
             <Button onClick={() => handleSubmit(onSubmit)()} variant='primary' className='mt-3 w-full'>Reservar Agora</Button>
