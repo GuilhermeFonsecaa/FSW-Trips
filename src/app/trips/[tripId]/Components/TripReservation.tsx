@@ -43,7 +43,7 @@ const TripReservation = ({ tripId, maxGuests, tripStartDate, tripEndDate, priceP
                 message: "Esta data já está reservada",
             })
 
-            setError("endDate", {
+            return setError("endDate", {
                 type: "manual",
                 message: "Esta data já está reservada",
             })
@@ -57,7 +57,7 @@ const TripReservation = ({ tripId, maxGuests, tripStartDate, tripEndDate, priceP
         }
 
         if (res?.error?.code === "INVALID_END_DATE") {
-            setError("endDate", {
+            return setError("endDate", {
                 type: "manual",
                 message: "Data Inválida",
             })
@@ -104,11 +104,17 @@ const TripReservation = ({ tripId, maxGuests, tripStartDate, tripEndDate, priceP
                             value: true,
                             message: 'Número de hóspedes é obrigatório'
                         },
+                        max: {
+                            value: maxGuests,
+                            message: `Número de hóspedes não pode ser maior que ${maxGuests}`,
+                        }
                     })}
 
                 error={!!errors?.guests}
                 errorMessage={errors?.guests?.message}
-                placeholder={`Número máximo de hóspedes (max: ${maxGuests})`} className='mt-4' />
+                placeholder={`Número máximo de hóspedes (max: ${maxGuests})`}
+                className='mt-4'
+                type='number' />
 
             <div className="flex justify-between mt-3">
                 <p className='font-medium text-sm text-primaryDarker'>Total</p>
