@@ -3,6 +3,7 @@ import "./globals.css"
 import { Poppins } from 'next/font/google';
 import Header from '../Components/Header';
 import Footer from './trips/[tripId]/Components/Footer'
+import ToastProvider from "@/Providers/toast";
 
 const poppins = Poppins({
   subsets: ["latin"], weight: [
@@ -25,9 +26,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang='en'>
       <body className={poppins.className}>
         <NextAuthProvider>
-          <Header />
-          {children}
-          <Footer/>
+          <ToastProvider>
+            <Header />
+            {children}
+            <Footer />
+          </ToastProvider>
         </NextAuthProvider>
       </body>
     </html>

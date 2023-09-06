@@ -10,19 +10,22 @@ import ptBR from 'date-fns/locale/pt-BR'
 import Button from "@/Components/Button";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { isBefore } from 'date-fns';
+import { toast } from "react-toastify"
 
-const TripConfirmation = ({ params }: { params: { tripId: string, tripStartDate: string } }) => {
+
+
+const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
     const [trip, setTrip] = useState<Trip | null>();
     const [totalPrice, setTotalPrice] = useState<number>(0);
-    const [tripStartDate, setTripStartDate] = useState()
     const searchParams = useSearchParams() //pega todas querys da url
     const router = useRouter()
-    const { status } = useSession()
+    const { status, data } = useSession();
+
+    console.log(data?.user)
 
     useEffect(() => {
         const fetchTrip = async () => {
-            const response = await fetch(`http://localhost:3000/api/trips/check`, {
+            const response = await fetch("http://localhost:3000/api/trips/check", {
                 method: "POST",
                 body: JSON.stringify({
                     tripId: params.tripId,
@@ -34,9 +37,9 @@ const TripConfirmation = ({ params }: { params: { tripId: string, tripStartDate:
             const res = await response.json()
             setTrip(res.trip)
             setTotalPrice(res.totalPrice)
-           
+
             if (res.error) {
-                return alert(res.error.code), router.push('/');
+                return router.push('/');
             }
         };
 
@@ -49,7 +52,31 @@ const TripConfirmation = ({ params }: { params: { tripId: string, tripStartDate:
     }, [status])
 
 
-    if (!trip) return null
+    if (!trip) {
+        return null;
+    }
+    const handleBuyClick = async () => {
+        const res = await fetch("http://localhost:3000/api/trips/reservation", {
+            method: "POST",
+            body: Buffer.from(
+                JSON.stringify({
+                    tripId: params.tripId,
+                    startDate: searchParams.get("startDate"),
+                    endDate: searchParams.get("endDate"),
+                    guests: Number(searchParams.get("guests")),
+                    userId: (data?.user as any)?.id!,
+                    totalPaid: totalPrice,
+                })
+            ),
+        });
+
+        if (!res.ok) {
+            return toast.error("Ocorreu um erro ao realizar a reserva", { position: "bottom-center" })
+        }
+
+        toast.success("Reserva realizada com sucesso!", { position: "bottom-center" });
+    };
+
 
     const startDate = new Date(searchParams.get('startDate') as string);
     const endDate = new Date(searchParams.get('endDate') as string);
@@ -90,7 +117,7 @@ const TripConfirmation = ({ params }: { params: { tripId: string, tripStartDate:
                 </div>
                 <h3 className="font-semibold mt-5">Hospédes:</h3>
                 <p className="mt-1 items-center">{guests} hóspedes</p>
-                <Button className="mt-5" variant="primary">Finalizar Compra</Button>
+                <Button onClick={handleBuyClick} className="mt-5" variant="primary">Finalizar Compra</Button>
             </div>
 
 
