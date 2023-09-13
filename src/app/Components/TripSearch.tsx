@@ -19,7 +19,7 @@ const TripSearch = () => {
                     <CurrencyInput />
                 </div>
 
-                <Button>Buscar</Button>
+                <Button variant="primary">Buscar</Button>
             </div>
         </div>
     )
