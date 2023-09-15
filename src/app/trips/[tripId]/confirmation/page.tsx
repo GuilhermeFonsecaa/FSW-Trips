@@ -75,6 +75,7 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
         }
 
         toast.success("Reserva realizada com sucesso!", { position: "bottom-center" });
+        router.push('/')
     };
 
 
@@ -112,8 +113,8 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
             <div className="flex flex-col mt-5 text-primaryDarker">
                 <h3 className="font-semibold">Data:</h3>
                 <div className="flex items-center gap-1 mt-1">
-                    <p className="">{format(startDate, "dd 'de' MMM", { locale: ptBR })} - </p>
-                    <p className="">{format(endDate, "dd 'de' MMM", { locale: ptBR })}</p>
+                    <p className="">{format(startDate, "dd 'de' MMMM", { locale: ptBR })} - </p>
+                    <p className="">{format(endDate, "dd 'de' MMMM", { locale: ptBR })}</p>
                 </div>
                 <h3 className="font-semibold mt-5">Hospédes:</h3>
                 <p className="mt-1 items-center">{guests} hóspedes</p>

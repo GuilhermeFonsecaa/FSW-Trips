@@ -17,9 +17,9 @@ interface TripReservationProps {
 }
 
 interface TripReservationForm {
-    guests: number;
     startDate: Date | null;
     endDate: Date | null;
+    guests: number;
 }
 
 const TripReservation = ({ tripId, maxGuests, tripStartDate, tripEndDate, pricePerDay }: TripReservationProps) => {

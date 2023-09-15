@@ -36,7 +36,7 @@ const Header = () => {
                         <Image height={31} width={31} src={data.user.image!} alt={data.user.name!} className="rounded-full shadow-md" />
                         {menuIsOpen && (
                             <div className="z-50 absolute top-12 left-0 w-full h-[100px] bg-white rounded-lg shadow-lg flex flex-col justify-center items-center">
-                                <Link href='/my-trips'>
+                                <Link href='/my-trips' onClick={() => setMenuIsOpen(false)}>
                                     <button className="text-primary text-sm font-semibold pb-2 border-b border-grayLighter border-solid">Minhas Viagens</button>
                                 </Link>
                                 <button className="text-primary text-sm font-semibold pt-2" onClick={handleLogoutClick}>Logout</button>

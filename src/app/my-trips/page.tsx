@@ -3,13 +3,19 @@
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { TripReservation } from "@prisma/client";
-
+import { Prisma } from "@prisma/client";
+import UserReservationItem from '@/app/my-trips/Components/UserReservationItem'
+import Button from "@/Components/Button";
+import Link from "next/link";
 
 
 const MyTrips = () => {
     const { status, data } = useSession();
-    const [reservations, setReservations] = useState<TripReservation[]>([])
+    const [reservations, setReservations] = useState<
+        Prisma.TripReservationGetPayload<{
+            include: { trip: true }
+        }>[]
+    >([])
     const router = useRouter();
 
     useEffect(() => {
@@ -30,7 +36,17 @@ const MyTrips = () => {
     }, [status])
 
     return (
-        <div></div>
+        <div className="container mx-auto p-5">
+            <h1 className="font-semibold text-primaryDarker text-xl">Minhas viagens</h1>
+            {reservations.length > 0 ? reservations?.map((reservation =>
+                <UserReservationItem key={reservation.id} reservation={reservation} />
+            )) :
+                <div className="flex flex-col">
+                    <p className="mt-2 font-medium text-primaryDarker">Você ainda não tem nenhuma reserva :(</p>
+                    <Link href='/'> <Button className="w-full mt-5" variant="primary">Fazer reserva</Button></Link>
+                </div>
+            }
+        </div>
     )
 }
 
