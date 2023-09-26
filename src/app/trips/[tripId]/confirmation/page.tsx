@@ -13,7 +13,6 @@ import { useSession } from "next-auth/react";
 import { toast } from "react-toastify"
 
 
-
 const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
     const [trip, setTrip] = useState<Trip | null>();
     const [totalPrice, setTotalPrice] = useState<number>(0);
@@ -45,7 +44,6 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
 
         if (status === 'unauthenticated') {
             router.push('/')
-            alert('Faça login para reservar a viagem')
         }
 
         fetchTrip()
