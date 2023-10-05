@@ -1,5 +1,6 @@
 import React from 'react';
 import IconsSearch from '@/Components/IconsSearch';
+import Link from 'next/link';
 
 const QuickSearch = () => {
     return (
@@ -11,10 +12,18 @@ const QuickSearch = () => {
             </div>
 
             <div className="flex w-full justify-between mt-5">
-                <IconsSearch src={"/hotel-icon.png"} title='Hotel' />
-                <IconsSearch src={"/cottage-icon.png"} title='Chalés' />
-                <IconsSearch src={"/inn-icon.png"} title='Pousadas' />
-                <IconsSearch src={"/farm-icon.png"} title='Fazendas' />
+                <Link href={`trips/search?destiny=hotel`}>
+                    <IconsSearch src={"/hotel-icon.png"} title='Hotel' />
+                </Link>
+                <Link href={`trips/search?destiny=chalé`}>
+                    <IconsSearch src={"/cottage-icon.png"} title='Chalés' />
+                </Link>
+                <Link href={`trips/search?destiny=pousada`}>
+                    <IconsSearch src={"/inn-icon.png"} title='Pousadas' />
+                </Link>
+                <Link href={`trips/search?destiny=fazenda`}>
+                    <IconsSearch src={"/farm-icon.png"} title='Fazendas' />
+                </Link>
             </div>
 
         </div>
