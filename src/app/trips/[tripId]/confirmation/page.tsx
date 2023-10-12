@@ -91,7 +91,7 @@ const TripConfirmation = ({ params }: { params: { tripId: string } }) => {
     //verificar essa validação se é para colocar aqui ou na chamada da requisição, para verificar se a pessoa trocou as datas da url para datas que não são possíveis reservar
 
     return (
-        <div className="container mx-auto p-5">
+        <div className="container mx-auto p-5 lg:max-w-[600px]">
             <h1 className="font-semibold text-xl text-primaryDarker">Sua viagem</h1>
 
             {/*CARD*/}
