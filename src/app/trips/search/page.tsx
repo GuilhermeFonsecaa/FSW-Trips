@@ -23,7 +23,7 @@ const Trips = () => {
 
 
     return (
-        <div className="container p-5 mx-auto flex flex-col items-center lg:items-start">
+        <div className="container p-5 mx-auto flex flex-col items-center lg:items-start lg:pt-10">
             <h1 className="font-semibold text-xl text-primaryDarker lg:w-full lg:text-left lg:text-[2.5rem]">Viagens Encontradas</h1>
             <h2 className="text-sm font-medium text-primaryDarker mt-2 mb-5 lg:mt-6 lg:w-full lg:text-left">
                 {trips.length > 0 ? "Listamos as melhores hospedagens para você!" : "Não encontramos nada nos seus parâmetros :("}
