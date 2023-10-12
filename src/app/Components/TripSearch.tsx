@@ -27,10 +27,10 @@ const TripSearch = () => {
     }
 
     return (
-        <div className="container mx-auto p-5 bg-search-background bg-cover bg-no-repeat bg-center">
-            <h1 className="font-semilbold text-2xl text-primaryDarker text-center">Encontre sua próxima <span className="text-primary">viagem!</span></h1>
+        <div className="container mx-auto p-5 bg-search-background bg-cover bg-no-repeat bg-center lg:py-28">
+            <h1 className="font-semilbold text-2xl text-primaryDarker text-center lg:text-[2.5rem]">Encontre sua próxima <span className="text-primary">viagem!</span></h1>
 
-            <div className="flex flex-col gap-4 mt-5">
+            <div className="lg:mt-12 flex flex-col gap-4 mt-5 lg:flex-row lg:max-w-[948px] lg:mx-auto lg:p-4 lg:bg-primary lg:bg-opacity-20 lg:rounded-lg">
                 <Input placeholder="Qual o seu destino?"
                     error={!!errors.destiny}
                     errorMessage={errors.destiny?.message}
@@ -42,7 +42,7 @@ const TripSearch = () => {
                     }
                     )} />
 
-                <div className="flex gap-4">
+                <div className="flex gap-4 lg:w-full">
                     <Controller
                         name="startDate"
                         control={control}
@@ -61,7 +61,7 @@ const TripSearch = () => {
 
                 </div>
 
-                <Button onClick={() => handleSubmit(onSubmit)()} variant="primary">Buscar</Button>
+                <Button onClick={() => handleSubmit(onSubmit)()} className="w-1/2" variant="primary">Buscar</Button>
             </div>
         </div >
     )
