@@ -52,7 +52,7 @@ const TripReservation = ({ tripId, maxGuests, tripStartDate, tripEndDate, priceP
         }
 
         if (res?.error?.code === "INVALID_START_DATE") {
-           return setError("startDate", {
+            return setError("startDate", {
                 type: "manual",
                 message: "Data Inválida",
             })
@@ -73,7 +73,10 @@ const TripReservation = ({ tripId, maxGuests, tripStartDate, tripEndDate, priceP
     const endDate = watch("endDate")
 
     return (
-        <div className="flex flex-col px-5">
+        <div className="flex flex-col px-5 lg:min-w-[380px] lg:p-5 lg:border-grayLighter lg:border lg:rounded-lg lg:shadow-md">
+            <p className='text-xl hidden text-primaryDarker mb-4 lg:block'>
+                <span className='font-semibold'>R${pricePerDay} por dia</span>
+            </p>
             <div className='flex gap-4'>
                 <Controller
                     name="startDate"
@@ -126,7 +129,7 @@ const TripReservation = ({ tripId, maxGuests, tripStartDate, tripEndDate, priceP
 
             <Button onClick={() => handleSubmit(onSubmit)()} variant='primary' className='mt-3 w-full'>Reservar Agora</Button>
 
-            <div className="pb-10 border-b border-b-grayLighter w-full"></div>
+            <div className="pb-10 border-b border-b-grayLighter w-full lg:border-none lg:pb-0"></div>
 
         </div>
     )
