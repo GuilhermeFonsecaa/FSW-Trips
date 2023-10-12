@@ -34,17 +34,22 @@ const MyTrips = () => {
 
     return (
         <div className="container mx-auto p-5">
-            <h1 className="font-semibold text-primaryDarker text-xl">Minhas viagens</h1>
-            {reservations.length > 0 ? reservations?.map((reservation =>
-                <UserReservationItem key={reservation.id} reservation={reservation} fetchReservations={fetchReservations} />
-            )) :
+            <h1 className="font-semibold text-primaryDarker lg:text-xl lg:mb-5">Minhas viagens</h1>
+            {reservations.length > 0 ? (
+                <div className="flex flex-col lg:grid lg:grid-cols-3 lg:gap-14">
+                    {reservations?.map((reservation =>
+                        <UserReservationItem key={reservation.id} reservation={reservation} fetchReservations={fetchReservations} />
+                    ))}
+                </div>
+            ) : (
                 <div className="flex flex-col">
                     <p className="mt-2 font-medium text-primaryDarker">Você ainda não tem nenhuma reserva :(</p>
                     <Link href='/'> <Button className="w-full mt-5" variant="primary">Fazer reserva</Button></Link>
                 </div>
-            }
+            )}
         </div>
     )
+
 }
 
 export default MyTrips;
