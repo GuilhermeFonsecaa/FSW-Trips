@@ -79,7 +79,7 @@ const TripHeader = ({ trip }: TripHeaderProps) => {
                 </div>
             </div>
 
-            <div className="flex flex-col p-5 lg:order-1 lg:p-0 lg:mb-10">
+            <div className="flex flex-col p-5 lg:order-1 lg:p-0 lg:mb-10 lg:mt-5">
                 <h1 className="font-semibold text-xl text-primaryDarker lg:text-3xl">{trip.name}</h1>
                 <div className="flex items-center gap-1 my-1">
                     <ReactCountryFlag countryCode={trip.countryCode} svg />
