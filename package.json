@@ -39,7 +39,7 @@
     "script.ts": "^0.0.0",
     "stripe": "^13.8.0",
     "tailwind-merge": "^1.14.0",
-    "tailwindcss": "^3.3.3",
+    "tailwindcss": "3.3.2",
     "touch": "^3.1.0",
     "typescript": "5.1.6"
   },
