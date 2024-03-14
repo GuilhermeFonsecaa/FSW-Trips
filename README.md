@@ -31,11 +31,12 @@ Este projeto utiliza as seguintes tecnologias e bibliotecas:
 - Prisma
 - PostgreSQL
 - Tailwind CSS
-- Stripe (pagamento falso)
+- Stripe 
 - NextAuth
 - Date-fns
 - React-icons
-- React Toastify (pop-ups)
+- React Toastify 
+- Supabase
 
 🧠 **O Que Aprendi**
 
