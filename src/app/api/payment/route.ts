@@ -4,7 +4,7 @@ import Stripe from 'stripe'
 import { authOptions } from '../auth/[...nextauth]/route';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: '2023-08-16'
+    apiVersion: '2022-11-15'
 })
 
 
