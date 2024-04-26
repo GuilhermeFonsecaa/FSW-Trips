@@ -1,34 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# FSW Trips
 
-## Getting Started
+## Visão Geral
 
-First, run the development server:
+FSW Trips é um projeto Full-Stack para oferecer aos usuários uma plataforma intuitiva para planejar e gerenciar itinerários de viagem. O principal objetivo deste projeto é criar uma interface intuitiva que simplifique a organização de viagens e facilite o acesso às informações essenciais de viagem.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Principais Recursos
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Autenticação Segura**: Utiliza o NextAuth para fornecer autenticação robusta e segura, garantindo que apenas usuários autorizados possam acessar as funcionalidades do aplicativo.
+  
+- **Processamento de Pagamentos**: Integra o Stripe para processar pagamentos de forma rápida e segura, oferecendo aos usuários várias opções de pagamento para concluir suas reservas.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Gerenciamento de Dados**: Emprega o Prisma como camada de acesso a dados, facilitando o gerenciamento e a manipulação de dados relacionais no banco de dados.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Armazenamento de Dados**: Usa o Supabase como plataforma de banco de dados e armazenamento de dados, garantindo uma infraestrutura confiável e escalável para o aplicativo.
 
-## Learn More
+- **Interface Intuitiva**: O design moderno e responsivo, desenvolvido com o Tailwind CSS, oferece uma interface intuitiva e agradável para os usuários navegarem e fazerem suas reservas de viagens.
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Prévia do Projeto
+![image](https://github.com/GuilhermeFonsecaa/FSW-Trips/assets/78861702/3d077569-ee34-48c5-a540-45cfb9100638)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+🖱️ **Tecnologias**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Este projeto utiliza as seguintes tecnologias e bibliotecas:
+
+- Typescript
+- Next.js
+- Prisma
+- PostgreSQL
+- Tailwind CSS
+- Stripe 
+- NextAuth
+- Date-fns
+- React-icons
+- React Toastify 
+- Supabase
+
+🧠 **O Que Aprendi**
+
+Durante o desenvolvimento deste projeto, adquiri experiência em:
+
+- Criar rotas de servidor com Next.js
+- Implementar NextAuth com OAuth
+- Integração básica do Stripe para processamento de pagamentos
+- Aprimorar a criação de interfaces com Tailwind CSS
