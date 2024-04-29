@@ -22,7 +22,7 @@ function CurrencyInput({
         <div className="flex w-full flex-col">
             <_CurrencyInput
                 lang="pt-BR"
-                className={inputClassName}
+                className={"rounded-lg border border-gray-300 bg-white p-2 text-sm font-normal text-primaryDarker placeholder-black placeholder-opacity-20 outline-none transition-all focus:ring-1 focus:ring-primary"}
                 placeholder="Orçamento"
                 intlConfig={{ locale: "pt-BR", currency: "BRL" }}
                 {...props}

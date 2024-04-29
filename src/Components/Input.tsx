@@ -15,7 +15,7 @@ function Input({ className, error, errorMessage, ...props }: InputProps, ref: Le
 
   return (
     <div className="flex w-full flex-col">
-      <input ref={ref} className={inputClassName} {...props} />
+      <input ref={ref} className={"rounded-lg border border-gray-300 bg-white p-2 text-sm font-normal text-primaryDarker placeholder-black placeholder-opacity-20 outline-none transition-all"} {...props} />
       {error && errorMessage && <span className="mt-1 text-xs text-red-400">{errorMessage}</span>}
     </div>
   );
